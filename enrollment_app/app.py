@@ -30,6 +30,7 @@ def create_app() -> Flask:
     app = Flask(__name__, template_folder=str(BASE_DIR / "templates"), static_folder=str(BASE_DIR / "static"))
     app.config["SECRET_KEY"] = "dev-secret-key"
     app.config["CERTIFICATE_DIR"] = BASE_DIR / "instance" / "certificates"
+    app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
 
     initialize_database()
     seed_data()
