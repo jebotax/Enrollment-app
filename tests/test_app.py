@@ -134,12 +134,6 @@ def test_logged_in_user_is_redirected_away_from_login(client):
     assert response.headers["Location"].endswith("/staff/dashboard")
 
 
-def test_guest_login_page_redirects_to_welcome(client):
-    response = client.get("/login", follow_redirects=False)
-    assert response.status_code == 302
-    assert response.headers["Location"].endswith("/")
-
-
 def test_staff_and_admin_use_dedicated_edit_pages(client):
     login(client, "staff@maritimeenroll.test", "staff123")
     assert client.get("/staff/courses/1/edit").status_code == 200

@@ -109,8 +109,6 @@ def create_app() -> Flask:
     def login():
         if g.user:
             return redirect(target_dashboard(g.user["role"]))
-        if request.method == "GET":
-            return redirect(url_for("home"))
         if request.method == "POST":
             email = request.form["email"].strip().lower()
             password = request.form["password"]
